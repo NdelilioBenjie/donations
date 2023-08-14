@@ -1,8 +1,8 @@
 <?php
 
-use Illuminate\Foundation\Application;
-use Illuminate\Support\Facades\Route;
 use Inertia\Inertia;
+use Illuminate\Support\Facades\Route;
+use Illuminate\Foundation\Application;
 
 /*
 |--------------------------------------------------------------------------
@@ -32,4 +32,12 @@ Route::middleware([
     Route::get('/dashboard', function () {
         return Inertia::render('Dashboard');
     })->name('dashboard');
+});
+
+Route::group([
+    'prefix' => 'payments'
+], function () {
+    Route::get('/pay', [\App\Http\Controllers\PesapalController::class, 'payment'])->name('payments.pay');
+    Route::get('donepayment', ['as' => 'paymentsuccess', 'uses'=>'PesapalController@paymentsuccess']);
+    Route::get('paymentconfirmation', 'PesapalController@paymentconfirmation');
 });
