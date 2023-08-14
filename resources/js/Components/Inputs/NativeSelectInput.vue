@@ -1,0 +1,37 @@
+<script setup>
+    import { onMounted, ref } from 'vue';
+
+    defineProps({
+        modelValue: String,
+        options: Array,
+        selected: [String]
+    });
+
+    defineEmits(['update:modelValue']);
+
+    const input = ref(null);
+
+    onMounted(() => {
+        if (input.value.hasAttribute('autofocus')) {
+            input.value.focus();
+        }
+    });
+
+    defineExpose({ focus: () => input.value.focus() });
+</script>
+
+<template>
+    <select id="location"
+            name="location"
+            class="mt-2 block w-full rounded-md border-0 py-1.5 pl-3 pr-10 text-gray-900 ring-1 ring-inset ring-gray-300 focus:ring-2 focus:ring-indigo-600 sm:text-sm sm:leading-6">
+        <option>United States</option>
+        <option selected="">Canada</option>
+        <option>Mexico</option>
+    </select>
+
+    <!-- <input ref="input"
+           class="border-gray-300 focus:border-indigo-500 focus:ring-indigo-500 rounded-md shadow-sm"
+           :value="modelValue"
+           @input="$emit('update:modelValue', $event.target.value)"> -->
+
+</template>
