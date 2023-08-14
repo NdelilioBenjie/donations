@@ -41,3 +41,15 @@ Route::group([
     Route::get('donepayment', ['as' => 'paymentsuccess', 'uses'=>'PesapalController@paymentsuccess']);
     Route::get('paymentconfirmation', 'PesapalController@paymentconfirmation');
 });
+
+Route::group([
+    'prefix' => 'admin',
+    'middleware' => ['admin']
+], function () {
+    Route::group([
+        'prefix' => 'users'
+    ], function () {
+        Route::get('/', [\App\Http\Controllers\Admin\UserController::class, 'index'])->name('admin.users.index');
+        Route::get('/{user}', [\App\Http\Controllers\Admin\UserController::class, 'show'])->name('admin.users.show');
+    });
+});
