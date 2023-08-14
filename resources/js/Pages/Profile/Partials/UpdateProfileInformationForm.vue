@@ -15,7 +15,8 @@ const props = defineProps({
 
 const form = useForm({
     _method: 'PUT',
-    name: props.user.name,
+    first_name: props.user.first_name,
+    last_name: props.user.last_name,
     email: props.user.email,
     photo: null,
 });
@@ -127,18 +128,33 @@ const clearPhotoFileInput = () => {
                 <InputError :message="form.errors.photo" class="mt-2" />
             </div>
 
-            <!-- Name -->
-            <div class="col-span-6 sm:col-span-4">
-                <InputLabel for="name" value="Name" />
-                <TextInput
-                    id="name"
-                    v-model="form.name"
-                    type="text"
-                    class="mt-1 block w-full"
-                    required
-                    autocomplete="name"
-                />
-                <InputError :message="form.errors.name" class="mt-2" />
+            <div class="col-span-12 flex gap-4">
+                <!-- First Name -->
+                <div class="">
+                    <InputLabel for="first_name" value="First Name" />
+                    <TextInput
+                        id="first_name"
+                        v-model="form.first_name"
+                        type="text"
+                        class="mt-1 block w-full"
+                        required
+                        autocomplete="first_name"
+                    />
+                    <InputError :message="form.errors.first_name" class="mt-2" />
+                </div>
+
+                <div class="">
+                    <InputLabel for="last_name" value="Last Name" />
+                    <TextInput
+                        id="last_name"
+                        v-model="form.last_name"
+                        type="text"
+                        class="mt-1 block w-full"
+                        required
+                        autocomplete="last_name"
+                    />
+                    <InputError :message="form.errors.last_name" class="mt-2" />
+                </div>
             </div>
 
             <!-- Email -->
