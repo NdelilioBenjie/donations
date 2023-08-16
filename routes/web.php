@@ -43,6 +43,12 @@ Route::group([
 });
 
 Route::group([
+    'prefix' => 'notifications'
+], function () {
+    Route::get('/', [\App\Http\Controllers\NotificationController::class, 'index'])->name('notifications.index');
+});
+
+Route::group([
     'prefix' => 'admin',
     'middleware' => ['admin']
 ], function () {
